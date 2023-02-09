@@ -1,0 +1,30 @@
+.MainDiv{
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    padding: 10px;
+    border: 1px solid;
+    background-color: #cecece;
+}
+.logo{
+    height: 40px;
+    width: 80px;
+}
+.InDivTwo{
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+
+}
+.create{
+    padding: 8px 15px 8px 15px;
+    border-radius: 3px;
+    border: 1px solid;
+    
+}
+.create:hover{
+    background-color: #625be6;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
