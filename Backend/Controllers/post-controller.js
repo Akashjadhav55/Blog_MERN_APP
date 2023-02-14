@@ -31,13 +31,15 @@ export const addPost = async (req, res, next) => {
 
 export const updatePost = async (req, res, next) => {
         const { title, description } = req.body
-        const blogId = req.param.id;
+        const blogId = req.params.id;
+        console.log(blogId)
         let blog;
         try {
              blog = await Post.findByIdAndUpdate(blogId, {
                 title,
                 description
             })
+            console.log(blog)
         } catch (error) {
            return console.log(error)
         }
