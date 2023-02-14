@@ -2,7 +2,8 @@ import express from "express"
 import cors from "cors"
 // import connection from "./Config/db.js"
 import mongoose from "mongoose"
-import router from "./routes/user-routes.js"
+import userRouter from "./routes/user-routes.js"
+import blogrouter from "./routes/post-route.js"
 
 const app = express()
 app.use(express.json())
@@ -10,13 +11,14 @@ app.use(cors())
 
 const port = 8080
 
-app.get("/", (res,req)=>{
+app.get('/', (req,res)=>{
   return res.status(200).json({
-    "message": "Thanks for visiting"
-  })
+    "message": "Thank you for visiting this website"
+  });
 })
 
-app.use("/user",router) 
+app.use("/user",userRouter) 
+app.use("/blog", blogrouter)
 
 mongoose.set('strictQuery', true);
 mongoose
