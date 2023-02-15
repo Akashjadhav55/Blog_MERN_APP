@@ -49,3 +49,31 @@ export const updatePost = async (req, res, next) => {
         }
         return res.status(200).json({blog})
 }
+
+export const getById = async (req ,res , next) =>{
+    const id = req.params.id;
+    let blog;
+    try {
+        blog = await Post.findById(id)
+    } catch (error) {
+        return console.log(error)
+    }
+    if(!blog){
+        return res.status(404).json({message:"Blog Not Found"})
+    }
+    return res.status(200).json({blog})
+}
+
+export const deletePost = async (req, res, next) => {
+    const id = req.params.id
+    let blog;
+    try {
+        blog = await Post.findByIdAndRemove(id)
+    } catch (error) {
+      return console.log(error)
+    }
+    if(!blog){
+        return res.status(404).json({message:"Unable to delete"})
+    }
+    re
+}
