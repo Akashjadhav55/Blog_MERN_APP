@@ -7,5 +7,6 @@ blogrouter.post("/add", addPost)
 blogrouter.put("/update/:id", updatePost)
 blogrouter.get("/:id", getById)
 blogrouter.delete("/:id" , deletePost)
+blogrouter.get("/user/:id",)
 
 export default blogrouter;
