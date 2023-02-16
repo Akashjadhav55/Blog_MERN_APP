@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import Post from "../Models/post.model"
+import user from "../Models/user.model";
 import User from "../Models/user.model"
 
 export const getAllPost = async (req, res, next) => {
@@ -107,5 +108,23 @@ export const deletePost = async (req, res, next) => {
         return res.status(404).json({message:"Unable to delete"})
     }
     return res.status(200).json({message:"Successfully Delete"})
+
+}
+
+
+
+
+export const getByUserId = async (req, res, next) => {
+    const userId = req.params.id
+    let userBlog;
+    try {
+        userBlog = await User.findById(userId).populate('blog')    
+    } catch (error) {
+        return console.log(error)
+    }
+    if(!userBlog){
+        return res.status(404).json({message : "No Blog Found"})
+    }
+    return res.status(200).json({message : userBlog})
 
 }
