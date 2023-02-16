@@ -15,10 +15,15 @@ const postSchema = new mongoose.Schema(
             required : true
         },
         user:{
-            type: String,
+            type: mongoose.Types.ObjectId,
+            ref: "User",
             required: true
         }
-    }
+    },
+    {
+        versionKey: false,
+        timestamps: true
+      }
 )
 
 export default mongoose.model("post", postSchema)

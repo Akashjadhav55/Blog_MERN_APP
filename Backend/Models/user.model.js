@@ -16,8 +16,14 @@ const userSchema = new Schema({
         type: String,
         required: true,
         minlength : 6
-    }
     },
+    blogs:[{
+        type:mongoose.Types.ObjectId,
+        ref:"post",
+        required:true
+    }]
+    },
+
     {
     versionKey: false,
     timestamps: true
