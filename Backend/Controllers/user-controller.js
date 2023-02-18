@@ -1,5 +1,8 @@
 import User from "../Models/user.model"
 import bcrypt from "bcryptjs"
+import jwt from "jsonwebtoken"
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 
 export const getAllUser = async (req, res, next) => {
@@ -48,9 +51,11 @@ export const signup = async (req, res, next) => {
 
 export const login = async ( req, res, next) => {
     const {email , password} = req.body
+     const SECRET = process.env.JWT_SECRET;
     let existingUser
     try {
-        existingUser = await User.findOne({email})        
+        existingUser = await User.findOne({email})
+
     } catch (error) {
         return console.log(error)
     }
@@ -62,5 +67,14 @@ export const login = async ( req, res, next) => {
     if(!isPasswordCorrect){
         return res.status(400).json({message: "Invalid Creadential"})
     }
-    return res.status(200).json({message:"Login Successfull"})
+
+    existingUser = existingUser.toJSON()
+    delete existingUser.password;
+    console.log(existingUser)
+    const token = jwt.sign(existingUser, SECRET)
+    
+    return res.status(200).json({message:"Login Successfull",
+            token:token,
+            user:existingUser
+        })
 }

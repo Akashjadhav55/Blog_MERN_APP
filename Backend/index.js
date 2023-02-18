@@ -4,6 +4,7 @@ import cors from "cors"
 import mongoose from "mongoose"
 import userRouter from "./routes/user-routes.js"
 import blogrouter from "./routes/post-route.js"
+import { auth } from "./middlewares/auth.js"
 
 const app = express()
 app.use(express.json())
@@ -18,6 +19,7 @@ app.get('/', (req,res)=>{
 })
 
 app.use("/user",userRouter) 
+app.use(auth)
 app.use("/blog", blogrouter)
 
 mongoose.set('strictQuery', true);
@@ -25,7 +27,7 @@ mongoose
   .connect("mongodb://127.0.0.1:27017/Blogapp")
   .then(() => app.listen(port))
   .then(() => 
-      console.log("s╕erver is running on http://localhost:"+ port)
+      console.log("server is running on http://localhost:"+ port)
   )
   .catch((err) => console.log(err)) 
 
