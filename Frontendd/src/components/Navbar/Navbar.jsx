@@ -21,6 +21,7 @@ function Navbar() {
           <Button  variant='contained' className={styles.dashboard}>Create</Button>
         </Link>
        <Link to="/login">Login</Link>
+       <Link to="/signup">SignUp</Link>
     </div>
     
     </div>
