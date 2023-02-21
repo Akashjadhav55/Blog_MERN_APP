@@ -4,13 +4,18 @@ import { useState, useEffect} from 'react'
 import CircularProgress from '@mui/material/CircularProgress';
 import { useNavigate, Link } from "react-router-dom"
 import jwt_decode from "jwt-decode"
+import Cookies from 'universal-cookie';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { isAuthHandler, saveUser } from '../../redux/auth/action';
+
 
 function Login() {
     const [ email, setEmail ] = useState("")
     const [ password, setPassword ] = useState("")
     const [ doing, setDoing] = useState(false);
     const navigate = useNavigate();
-
+    const dispatch = useDispatch()
     const url= "http://localhost:8088/user/login"
     const handleSubmit = () => {
             setDoing(true)
@@ -19,7 +24,19 @@ function Login() {
                 password,
             })
             .then((res) => {
-                const decode = 
+                const decode = jwt_decode(res.data.token)
+                // console.log(res)
+                // console.log(decode)
+                const cookies = new Cookies()
+                console.log(cookies)
+                cookies.set("AccessToken", res.data.token, decode,{
+                    expires : new Date(decode.exp * 1000)
+                })
+                cookies.set("loggedUser", decode, {
+                    expires: new Date(decode.exp * 1000)
+                  });
+                dispatch(saveUser(decode))
+                dispatch(isAuthHandler(true))
                 navigate("/")
             }).catch((err) => {
                 console.log(err)

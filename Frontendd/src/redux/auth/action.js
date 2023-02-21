@@ -1,4 +1,4 @@
-import * as types from "./actionType"
+import * as types from "./actionType.js"
 
 export const isAuthHandler = (authFlag) => {
     return{
