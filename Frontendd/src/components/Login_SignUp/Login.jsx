@@ -1,16 +1,18 @@
 import React from 'react'
 import { TextField, Button } from '@mui/material'
 import { useState, useEffect} from 'react'
+import CircularProgress from '@mui/material/CircularProgress';
+import { useNavigate, Link } from "react-router-dom"
 
 function Login() {
     const [ email, setEmail ] = useState("")
     const [ password, setPassword ] = useState("")
+    const navigate = useNavigate();
 
-    const url= "http://localhost:8080/user/signup"
+    const url= "http://localhost:8080/user/login"
     const handleSubmit = () => {
             setDoing(true)
             axios.post(url, {
-                name,
                 email,
                 password,
             })
