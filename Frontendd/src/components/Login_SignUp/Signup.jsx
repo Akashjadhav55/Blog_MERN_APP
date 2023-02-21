@@ -2,6 +2,7 @@ import React from 'react'
 import { TextField, Button } from '@mui/material'
 import { useState, useEffect} from 'react'
 import axios from "axios"
+import CircularProgress from '@mui/material/CircularProgress';
 import { useNavigate, Link } from "react-router-dom"
 
 function Signup() {
@@ -11,12 +12,14 @@ function Signup() {
     const [ doing, setDoing] = useState(false);
    const navigate = useNavigate();
 
-    const payload = [name, email, password, ]
-    // console.log(payload)
-    const url= ""
+    const url= "http://localhost:8080/user/signup"
     const handleSubmit = () => {
             setDoing(true)
-            axios.post(url, payload)
+            axios.post(url, {
+                name,
+                email,
+                password,
+            })
             .then((res) => {
                 navigate("/login")
             }).catch((err) => {
@@ -29,6 +32,8 @@ function Signup() {
     <form action="submit">
     <div style={{margin:"10vh 25% 0 25%" , textAlign:"center"}}>
         <h1>SingUp</h1>
+        <div>{
+           doing ? <CircularProgress/> : null }</div>
     <div style={{padding:"20px", marginTop:"0vh"}}>
         <TextField style={{padding:"10px"}}
             placeholder="Name"

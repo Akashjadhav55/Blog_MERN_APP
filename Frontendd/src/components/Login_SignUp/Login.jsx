@@ -6,6 +6,21 @@ function Login() {
     const [ email, setEmail ] = useState("")
     const [ password, setPassword ] = useState("")
 
+    const url= "http://localhost:8080/user/signup"
+    const handleSubmit = () => {
+            setDoing(true)
+            axios.post(url, {
+                name,
+                email,
+                password,
+            })
+            .then((res) => {
+                navigate("/login")
+            }).catch((err) => {
+                console.log(err)
+            }).finally(() => setDoing(false))
+    }
+
   return (
     <div style={{margin:"10vh 25% 0 25%" , textAlign:"center"}}>
         <h1>Login</h1>
@@ -24,7 +39,7 @@ function Login() {
             fullWidth
             onChange={(e) => setPassword(e.target.value)}
             />
-        <Button variant="contained">Login</Button>
+        <Button variant="contained" onClick={handleSubmit}>Login</Button>
     </div> 
     </div>
   )
