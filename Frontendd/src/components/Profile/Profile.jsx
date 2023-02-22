@@ -10,12 +10,12 @@ function Profile() {
   const navigate = useNavigate()
   const user = useSelector((store) => store.user.userData);
 
-  console.log(user);
+  console.log(user._id);
 
   return (
     <div className={styles.main}>
       <div className={styles.profile}>
-        <Fab onClick={() => navigate("/editprofile")}  className={styles.editeButton} color="secondary" aria-label="edit">
+        <Fab onClick={() => navigate(`/editprofile/${user._id}`)}  className={styles.editeButton} color="secondary" aria-label="edit">
           <EditIcon className={styles.edit} />
         </Fab>
         <Avatar
