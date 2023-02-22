@@ -13,3 +13,9 @@ export const saveUser  =  (userData) => {
         payload: userData,
     }
 }
+
+export const LogoutUser  =  () => {
+    return{
+        type:types.Logout_User,
+    }
+}
