@@ -78,3 +78,31 @@ export const login = async ( req, res, next) => {
             user:existingUser
         })
 }
+
+export const editProfile = async (req, res, next) => {
+    const {  name, tagline, bio, mobile, avatar } = req.body
+    console.log(req.body)
+    console.log("hello")
+    const userID = req.params.id
+    console.log(userID)
+
+    let existingUser;
+    try {
+        existingUser = await User.findByIdAndUpdate(userID,{
+            name, 
+            tagline, 
+            bio, 
+            mobile, 
+            avatar
+        })
+
+        console.log(existingUser)
+    } catch (error) {
+        res.status(401)
+    }
+    if(!existingUser){
+        return res.status(500).json({message : "user cann't find"})
+    }
+    return res.status(200).json({existingUser})
+
+}

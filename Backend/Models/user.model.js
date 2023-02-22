@@ -17,6 +17,18 @@ const userSchema = new Schema({
         required: true,
         minlength : 6
     },
+    tagline : {
+        type : String,
+    },
+    bio : {
+        type : String,
+    },
+    mobile : {
+        type : String,
+    },
+    avatar : {
+        type : String,
+    },
     blogs:[{
         type:mongoose.Types.ObjectId,
         ref:"post",
