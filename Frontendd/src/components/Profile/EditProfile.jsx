@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Button, ImageList, Input, InputLabel, TextField } from '@mui/material'
 import Cookies from "universal-cookie";
+import axios from "axios"
+import  TokenApi  from "../api/api";
+import { UpadteUser } from "../../redux/auth/action";
 
 function EditProfile() {
   const [name, setName] = useState("");
   const [tagline, setTagline] = useState("")
   const [ bio , setBio] = useState("")
-  const [ number, setNumber] = useState("")
+  const [ mobile, setNumber] = useState("")
   const [image, setImage] = useState([])
-  const [ imageURL, setImageURL] = useState([])
+  const [ avatar, setImageURL] = useState([])
   let { userID } = useParams();
   
   const user = useSelector((store) => store.user.userData);
-  
+  const dispatch = useDispatch()
   useEffect(() =>{
     if(image.length < 1) return
     else convertImageUrl()
@@ -30,8 +33,29 @@ function EditProfile() {
     image.forEach(img => newImageURls.push(URL.createObjectURL(img)))
     setImageURL(newImageURls);
   }
+console.log(user._id)
 
   const handleSubmit = () => {
+    const payload = {
+      _id : user._id,
+      name : name,
+      tagline : tagline,
+      bio : bio,
+      mobile : mobile,
+      avatar: avatar,
+    }
+// userRouter.patch("/edit/:id", editProfile)
+const url = `http://localhost:8088/user/edit/${user._id}`
+    const authAxios = TokenApi(url)
+
+    authAxios.patch(url, payload).
+        then((res) => {
+            console.log(res.data)
+            // dispatch(UpadteUser(res))
+            // const cookies = new Cookies()
+            // cookies.set("loggedUser", res)
+        } )
+        .catch((err) => console.log(err))
 
   }
 
@@ -65,7 +89,7 @@ function EditProfile() {
               onChange={handleImage}
             />
           </Button>
-          {imageURL.map((imgsrc) => (
+          {avatar.map((imgsrc) => (
             <img style={{ width: "100%" }} src={imgsrc} />
           ))}
         </div>
@@ -73,7 +97,7 @@ function EditProfile() {
           style={{ padding: "20px 5px" }}
           fullWidth
           size="small"
-          placeholder="Add a title"
+          placeholder="Tagline"
           type="text"
           value={tagline}
           onChange={(e) => setTagline(e.target.value)}
@@ -81,7 +105,7 @@ function EditProfile() {
         <TextField
           id="outlined-multiline-static"
           style={{ padding: "20px 5px" }}
-          placeholder="description"
+          placeholder="Bio"
           multiline
           rows={4}
           fullWidth
@@ -90,13 +114,13 @@ function EditProfile() {
         />
         <TextField
           style={{ padding: "10px" }}
-          placeholder="Email"
+          placeholder="Number"
           fullWidth
-          value={number}
+          value={mobile}
           onChange={(e) => setNumber(e.target.value)}
         />
         <Button variant="contained" onClick={handleSubmit}>
-          SignUp
+          Edit
         </Button>
       </div>
     </div>

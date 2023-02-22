@@ -22,6 +22,9 @@ export const Authreducer = (state = inistate, { type, payload }) => {
         case types.Logout_User : {
             return{ ...state, userData:{} }
         }
+        case types.UpadteUser : {
+            return {...state, userData :payload}
+        }
         default :{
             return state
         } 

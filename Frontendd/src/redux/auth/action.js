@@ -19,3 +19,10 @@ export const LogoutUser  =  () => {
         type:types.Logout_User,
     }
 }
+
+export const UpadteUser = (userData) => {
+    return{
+        type : types.UpadteUser,
+        payload : userData,
+    }
+}
