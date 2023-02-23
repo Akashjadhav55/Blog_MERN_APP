@@ -1,5 +1,5 @@
 .profile{
-    position: relative;
+    /* position: relative; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,9 +14,11 @@
 .avatar{
     height: 150px;
     width: 150px;
+    position: relative;
+    left: 20px;
 }
 .editeButton{
-    position: absolute;
-    right: 20px;
-    bottom: 20px;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
 }

@@ -27,7 +27,7 @@ const userSchema = new Schema({
         type : String,
     },
     avatar : {
-        type : Array,
+        type : String,
     },
     blogs:[{
         type:mongoose.Types.ObjectId,
