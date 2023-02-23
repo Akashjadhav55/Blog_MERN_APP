@@ -36,6 +36,15 @@ function Profile() {
         <label style={{fontSize:"20px" ,display: "flex", alignItems: "center" }}>
           Number : <h4>{user.mobile}</h4>
         </label>
+        <label style={{fontSize:"20px" ,display: "flex", alignItems: "center" }}>
+          Tag : <h4>{user.tagline}</h4>
+        </label>
+        <label style={{fontSize:"20px" ,display: "flex", alignItems: "center" }}>
+          Bio : <h4>{user.bio}</h4>
+        </label>
+      </div>
+      <div>
+      
       </div>
     </div>
   );

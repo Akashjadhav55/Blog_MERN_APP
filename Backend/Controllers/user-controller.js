@@ -70,9 +70,7 @@ export const login = async ( req, res, next) => {
 
     existingUser = existingUser.toJSON()
     delete existingUser.password;
-    console.log(existingUser)
     const token = jwt.sign(existingUser, SECRET)
-    console.log(token)
     
     return res.status(200).json({message:"Login Successfull",
             token:token,
@@ -82,10 +80,8 @@ export const login = async ( req, res, next) => {
 
 export const editProfile = async (req, res, next) => {
     const { _id, name, tagline, bio, mobile, avatar } = req.body
-    // console.log(req.body)
     const userID = req.params.id
-    console.log(userID)
-
+ 
     let existingUser;
     try {
         
@@ -98,7 +94,6 @@ export const editProfile = async (req, res, next) => {
             avatar
         })
 
-        console.log(existingUser)
     } catch (error) {
         console.log("catch err" + error)
         res.status(401).json({message: "server error",error})

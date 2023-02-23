@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react'
 function Create() {
   const [title, setTitle] = useState("")
   const [ description , setDescription] = useState("")
+  const [avatar, setAvatar] = useState("")
   const [image, setImage] = useState([])
   const [ imageURL, setImageURL] = useState([])
   console.log(title)
@@ -13,8 +14,14 @@ function Create() {
     else convertImageUrl()
   },[image])
 
+  const handleSubmit = () => {
+    
+  }
+
+
+  
   const handleImage = (e) => {
-      console.log([...e.target.files])
+      setAvatar(e.target.files)
       setImage([...e.target.files])
   }
   
@@ -42,11 +49,9 @@ function Create() {
           value={description} 
           onChange={(e) => setDescription(e.target.value)} 
         />
-      <Button variant='contained'>submit</Button>
+      <Button variant='contained' onClick={handleSubmit}>Publish</Button>
       </form>
-      {title}
-      {description}
-
+  
     </div>
   )
 }
