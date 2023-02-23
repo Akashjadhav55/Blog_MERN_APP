@@ -23,8 +23,7 @@ function Navbar() {
   const user = useSelector((store) => store.user.userData)
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log(isAuth);
-  console.log(user.name)
+
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);

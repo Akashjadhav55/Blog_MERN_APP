@@ -12,6 +12,7 @@ export const auth = async (req, res, next) => {
     if (authHeader) {
       // "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzM0NzVkYzdlOWIzNzc2M2MyZDgyZmQiLCJuYW1lIjoiVW1ha2FudCIsInBhc3N3b3JkIjoicGFzc3dvcmQiLCJlbWFpbCI6ImVtYWlsMkBleGFtcGxlLmNvbSIsImlhdCI6MTY2NDM4MjQ3NCwiZXhwIjoxNjY0ODE0NDc0fQ.MYz01oP6m3nr-z3ijKqQgLVZ86f25VXF_a1OH_RaVLs"
       const token = authHeader.split(' ')[1];
+      console.log(token)
       if (token) {
         try {
           const SECRET = process.env.JWT_SECRET;

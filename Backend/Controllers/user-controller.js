@@ -72,6 +72,7 @@ export const login = async ( req, res, next) => {
     delete existingUser.password;
     console.log(existingUser)
     const token = jwt.sign(existingUser, SECRET)
+    console.log(token)
     
     return res.status(200).json({message:"Login Successfull",
             token:token,
@@ -80,15 +81,16 @@ export const login = async ( req, res, next) => {
 }
 
 export const editProfile = async (req, res, next) => {
-    const {  name, tagline, bio, mobile, avatar } = req.body
-    console.log(req.body)
-    console.log("hello")
+    const { _id, name, tagline, bio, mobile, avatar } = req.body
+    // console.log(req.body)
     const userID = req.params.id
     console.log(userID)
 
     let existingUser;
     try {
+        
         existingUser = await User.findByIdAndUpdate(userID,{
+            _id,
             name, 
             tagline, 
             bio, 
@@ -98,7 +100,8 @@ export const editProfile = async (req, res, next) => {
 
         console.log(existingUser)
     } catch (error) {
-        res.status(401)
+        console.log("catch err" + error)
+        res.status(401).json({message: "server error",error})
     }
     if(!existingUser){
         return res.status(500).json({message : "user cann't find"})

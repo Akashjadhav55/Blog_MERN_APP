@@ -1,67 +1,79 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { Button, ImageList, Input, InputLabel, TextField } from '@mui/material'
+import { useNavigate, useParams } from "react-router-dom";
+import { Button, ImageList, Input, InputLabel, TextField } from "@mui/material";
 import Cookies from "universal-cookie";
-import axios from "axios"
-import  TokenApi  from "../api/api";
+import axios from "axios";
+import TokenApi from "../api/api";
 import { UpadteUser } from "../../redux/auth/action";
+import swal from "sweetalert"
+
 
 function EditProfile() {
   const [name, setName] = useState("");
-  const [tagline, setTagline] = useState("")
-  const [ bio , setBio] = useState("")
-  const [ mobile, setNumber] = useState("")
-  const [image, setImage] = useState([])
-  const [ avatar, setImageURL] = useState([])
+  const [tagline, setTagline] = useState("");
+  const [bio, setBio] = useState("");
+  const [mobile, setNumber] = useState("");
+  const [image, setImage] = useState([]);
+  const [avatar, setImageURL] = useState([]);
   let { userID } = useParams();
-  
+  const navigate = useNavigate();
+
   const user = useSelector((store) => store.user.userData);
-  const dispatch = useDispatch()
-  useEffect(() =>{
-    if(image.length < 1) return
-    else convertImageUrl()
-  },[image])
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (image.length < 1) return;
+    else convertImageUrl();
+  }, [image]);
 
   const handleImage = (e) => {
-      console.log([...e.target.files])
-      setImage([...e.target.files])
-  }
-  
-  const convertImageUrl = () =>  {
-    const newImageURls = []
-    image.forEach(img => newImageURls.push(URL.createObjectURL(img)))
+    setImage([...e.target.files]);
+  };
+
+  const convertImageUrl = () => {
+    const newImageURls = [];
+    image.forEach((img) => newImageURls.push(URL.createObjectURL(img)));
     setImageURL(newImageURls);
-  }
-console.log(user._id)
+  };
+
+ 
 
   const handleSubmit = () => {
+    if(name.length == 0 && tagline.length == 0 && bio.length == 0 && mobile.length == 0 && avatar.length == 0){
+      swal("Complete User Deatils!",{button: false,icon:'error'});
+    }else{
     const payload = {
-      _id : user._id,
-      name : name,
-      tagline : tagline,
-      bio : bio,
-      mobile : mobile,
+      _id: user._id,
+      name: name,
+      tagline: tagline,
+      bio: bio,
+      mobile: mobile,
       avatar: avatar,
+    };
+    const payload1 = {
+      _id: user._id,
+      email: user.email,
+      name: name,
+      tagline: tagline,
+      bio: bio,
+      mobile: mobile,
+      avatar: avatar,
+    };
+    // userRouter.patch("/edit/:id", editProfile)
+    let url = `http://localhost:8088/user/edit/${user._id}`;
+    const authAxios = TokenApi(url);
+
+    authAxios
+      .patch(url, payload)
+      .then((res) => {
+        dispatch(UpadteUser(payload1));
+        const cookies = new Cookies();
+        cookies.set("loggedUser", payload1);
+        // navigate("/profile");
+      })
+      .catch((err) => console.log(err));
     }
-// userRouter.patch("/edit/:id", editProfile)
-const url = `http://localhost:8088/user/edit/${user._id}`
-    const authAxios = TokenApi(url)
-
-    authAxios.patch(url, payload).
-        then((res) => {
-            console.log(res.data)
-            // dispatch(UpadteUser(res))
-            // const cookies = new Cookies()
-            // cookies.set("loggedUser", res)
-        } )
-        .catch((err) => console.log(err))
-
-  }
-
-
-
-  console.log(userID);
+  };
 
   return (
     <div>

@@ -25,8 +25,6 @@ function Login() {
             })
             .then((res) => {
                 const decode = jwt_decode(res.data.token)
-                // console.log(res)
-                // console.log(decode)
                 const cookies = new Cookies()
                 console.log(cookies)
                 cookies.set("AccessToken", res.data.token, decode,{
