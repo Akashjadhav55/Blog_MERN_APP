@@ -20,20 +20,7 @@ function EditProfile() {
 
   const user = useSelector((store) => store.user.userData);
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   if (image.length < 1) return;
-  //   else convertImageUrl();
-  // }, [image]);
-
-  const handleImage = (e) => {
-    setImage(e.target.files);
-  };
-
-  // const convertImageUrl = () => {
-  //   const newImageURls = [];
-  //   image.forEach((img) => newImageURls.push(URL.createObjectURL(img)));
-  //   setImageURL(newImageURls);
-  // };
+  
 
   const handleSubmit = () => {
     if (

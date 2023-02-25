@@ -19,6 +19,7 @@ export const getAllPost = async (req, res, next) => {
 export const addPost = async (req, res, next) => {
     const { title, description, image, user } = req.body
 
+    console.log(req.body)
 
     let existingUser;
     try {

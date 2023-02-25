@@ -5,7 +5,7 @@ import { Avatar, Button, Typography } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import Fab from "@mui/material/Fab";
 import { useNavigate } from "react-router-dom";
-import { Label } from "@mui/icons-material";
+import { Image, Label } from "@mui/icons-material";
 
 function Profile() {
   const navigate = useNavigate();
@@ -26,11 +26,10 @@ function Profile() {
           </Fab>
         </div>
         <label style={{fontSize:"20px" , display: "flex", alignItems: "center" }}>
-          {" "}
           Name :<h4>{user.name}</h4>
         </label>
         <label style={{fontSize:"20px" ,display: "flex", alignItems: "center" }}>
-          {" "}
+
           Email :<h4>{user.email}</h4>
         </label>
         <label style={{fontSize:"20px" ,display: "flex", alignItems: "center" }}>
