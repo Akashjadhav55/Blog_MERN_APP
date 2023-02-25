@@ -9,18 +9,19 @@ import { UpadteUser } from "../../redux/auth/action";
 import swal from "sweetalert";
 
 function EditProfile() {
-  const [name, setName] = useState("");
-  const [tagline, setTagline] = useState("");
-  const [bio, setBio] = useState("");
-  const [mobile, setNumber] = useState("");
-  const [avatar, setImage] = useState("");
+  const user = useSelector((store) => store.user.userData);
+  const dispatch = useDispatch();
+  
+  const [name, setName] = useState( user.name || "");
+  const [tagline, setTagline] = useState(user.tagline || "");
+  const [bio, setBio] = useState(user.bio || "");
+  const [mobile, setNumber] = useState(user.mobile || "");
+  const [avatar, setImage] = useState(user.avatar || "");
   // const [avatar, setImageURL] = useState([]);
   let { userID } = useParams();
   const navigate = useNavigate();
 
-  const user = useSelector((store) => store.user.userData);
-  const dispatch = useDispatch();
-  
+ 
 
   const handleSubmit = () => {
     if (
@@ -112,7 +113,7 @@ function EditProfile() {
           onChange={(e) => setNumber(e.target.value)}
         />
         <Button variant="contained" onClick={handleSubmit}>
-          Edit
+          Save
         </Button>
       </div>
     </div>
