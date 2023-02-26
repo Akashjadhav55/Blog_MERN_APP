@@ -63,6 +63,7 @@ export const login = async ( req, res, next) => {
          return res.status(404).json({message:"Couldn't Find Creadential"})
     }
 
+    
     const isPasswordCorrect = bcrypt.compareSync(password,existingUser.password) //compareSync(LoginPassword, OldExistPassword)
     if(!isPasswordCorrect){
         return res.status(400).json({message: "Invalid Creadential"})

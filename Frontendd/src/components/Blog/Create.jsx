@@ -39,7 +39,7 @@ function Create() {
       user: user._id,
     };
 
-    const url = "http://localhost:8088/blog/add";
+    const url = "http://localhost:8080/blog/add";
     let authAxios = TokenApi(url);
     authAxios
       .post(url, payload)

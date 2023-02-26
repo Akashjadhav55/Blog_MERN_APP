@@ -12,7 +12,7 @@ function Signup() {
     const [ doing, setDoing] = useState(false);
    const navigate = useNavigate();
 
-    const url= "http://localhost:8088/user/signup"
+    const url= "http://localhost:8080/user/signup"
     const handleSubmit = () => {
             setDoing(true)
             axios.post(url, {

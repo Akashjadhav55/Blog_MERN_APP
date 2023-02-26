@@ -51,7 +51,7 @@ function EditProfile() {
         avatar: avatar,
       };
       // userRouter.patch("/edit/:id", editProfile)
-      let url = `http://localhost:8088/user/edit/${user._id}`;
+      let url = `http://localhost:8080/user/edit/${user._id}`;
       const authAxios = TokenApi(url);
 
       authAxios
