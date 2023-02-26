@@ -9,19 +9,14 @@
     display: flex;
     padding: 5px 5px 15px 5px;
     align-items: center;
-    justify-content: space-between;
+    justify-content: start;
+    font-size: 23px;
+
 }
 
-.userOne{
-    display: flex;
-    align-items: center;
-}
 .UserName {
     padding-left: 10px;
     font-weight: 600;
-}
-.userTwo > *{
-    padding: 0 10px;
 }
 
 .img{

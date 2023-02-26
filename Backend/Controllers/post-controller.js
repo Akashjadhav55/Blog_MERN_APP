@@ -117,6 +117,7 @@ export const deletePost = async (req, res, next) => {
 
 export const getByUserId = async (req, res, next) => {
     const userId = req.params.id
+    console.log(userId)
     let userBlog;
     try {
         userBlog = await User.findById(userId).populate('blogs')    
