@@ -29,8 +29,7 @@
 }
 .paragraph{
     padding: 30px 50px 10px 50px;
-    font-size: 20px;
-    display: block;
+    font-size: 30px;
     text-align: center;
 }
 
@@ -40,11 +39,10 @@
     }
     .title{
         padding: 50px 250px;
-        border: 1px solid;
     }
     .paragraph{
         padding: 30px 50px 10px 50px;
-        font-size: 20px;
+        font-size: 30px;
     }
   }
 

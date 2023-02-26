@@ -38,7 +38,7 @@ function Getblog() {
             },[])
             
             console.log(user)
-            // console.log(blogs.user)
+            console.log(blogs)
   return (
     <div className={styled.container}>
         <img className={styled.image} src={blogs.image} alt=""  />
