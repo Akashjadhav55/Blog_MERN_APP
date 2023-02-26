@@ -10,9 +10,12 @@ import Signup from './components/Login_SignUp/Signup';
 import Profile from './components/Profile/Profile';
 import EditProfile from './components/Profile/EditProfile';
 import Dashboard from './components/Blog/Dashboard';
+import Edit from './components/Blog/Edit';
+// import Navbar from './extra/Navbar';
 function App() {
   return (
     <div className="App">
+      {/* <Navbar/> */}
       <Navbar/>
       {/* <Api/> */}
      <Routes>
@@ -21,6 +24,7 @@ function App() {
       <Route path='/profile' element={<Profile/>}> </Route>
       <Route path='/editprofile/:userID' element={<EditProfile/>}></Route>
       <Route path='/dashboard' element={<Dashboard/>}></Route>
+      <Route path='/edit/:id' element={<Edit/>}></Route>
 
       <Route path='/login' element={<Login/>}></Route>
       <Route path='/signup' element={<Signup/>} ></Route>

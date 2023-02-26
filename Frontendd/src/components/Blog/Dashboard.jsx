@@ -22,7 +22,7 @@ function Dashboard() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  console.log(blogs);
+
   const fetchData = () => {
     const url = `http://localhost:8080/blog/user/${user._id}`;
     let authAxios = TokenApi(url);
@@ -39,8 +39,8 @@ function Dashboard() {
   }, []);
 
   const handleDelete = (id) => {
-    const url = `http://localhost:8080/blog/user/${id}`;
-
+    const url = `http://localhost:8080/blog/${id}`;
+    console.log(id)
     swal({
       title: "Are you sure?",
       text: "Once deleted, you will not be able to recover this blog!",
@@ -48,9 +48,14 @@ function Dashboard() {
       buttons: true,
       dangerMode: true,
     }).then((willdelete) => {
-      if (willdelete) {
+      if (willdelete) {  
         let authAxios = TokenApi(url);
-        authAxios.delete(url);
+        authAxios.delete(url)
+          .then((res) => {
+            if(res.status === 200){
+            fetchData()
+            }
+          }).catch((err) => console.log(err))
       }
     });
   };
@@ -100,7 +105,7 @@ function Dashboard() {
                     open={Boolean(anchorElUser)}
                     onClose={handleCloseUserMenu}
                   >
-                    <MenuItem onClick={() => navigate("/edit")}>Edit</MenuItem>
+                    <MenuItem onClick={() => navigate(`/edit/${blog._id}`)}>Edit</MenuItem>
                     <MenuItem onClick={() => handleDelete(blog._id)}>
                       Delete
                     </MenuItem>

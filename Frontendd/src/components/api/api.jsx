@@ -10,7 +10,7 @@ export default function TokenApi(url) {
 
   const cookies= new Cookies();
   let token = cookies.get('AccessToken');
-  console.log(token)
+  // console.log(token)
   const authAxios = axios.create({
       baseURL: url,
       headers: {
