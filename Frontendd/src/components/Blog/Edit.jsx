@@ -19,7 +19,6 @@ function Edit() {
         const authAxios = TokenApi(url)
         
         authAxios.get(url).then((res) => {
-            // console.log(res.data.blog)
             setBlog(res.data.blog)
         }).catch((err) => console.log(err))
         
@@ -29,8 +28,6 @@ function Edit() {
         fetchBlogData()
     },[])
     
-    console.log(blogID.id)
-    console.log(blog)
     const handleSubmit = () => {
       if(title.length === 0 &&  description.length == 0){
         swal("Complete Blog Deatils!", { button: false, icon: "error" });

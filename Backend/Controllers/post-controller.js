@@ -8,7 +8,8 @@ export const getAllPost = async (req, res, next) => {
     try {
         blogs = await Post.find().populate("user")
     } catch (error) {
-        return console.log(error)
+        console.log(error)
+        return res.status(500).json({message : "error"})
     }
     if(!blogs){
         return res.status(404).json({message:"No Blogs Found"})
@@ -18,8 +19,6 @@ export const getAllPost = async (req, res, next) => {
 
 export const addPost = async (req, res, next) => {
     const { title, description, image, user } = req.body
-
-    console.log(req.body)
 
     let existingUser;
     try {
@@ -51,7 +50,7 @@ export const addPost = async (req, res, next) => {
         existingUser.blogs.push(blog)
         await existingUser.save()
     } catch (error) {
-        // console.log(error)
+        console.log(error)
         return res.status(500).json({message: error})
     }
     return res.status(200).json({blog})
@@ -60,14 +59,13 @@ export const addPost = async (req, res, next) => {
 export const updatePost = async (req, res, next) => {
         const { title, description } = req.body
         const blogId = req.params.id;
-        console.log(blogId)
         let blog;
         try {
              blog = await Post.findByIdAndUpdate(blogId, {
                 title,
                 description
             })
-            console.log(blog)
+
         } catch (error) {
            return console.log(error)
         }
@@ -95,10 +93,10 @@ export const getById = async (req ,res , next) =>{
 export const deletePost = async (req, res, next) => {
     const id = req.params.id
     let blog;
-    console.log(blog)
+
     try {
         blog = await Post.findByIdAndRemove(id).populate('user');
-        // console.log(blog)
+
         await blog.user.blogs.pull(blog)
         await blog.user.save()
     } catch (error) {
@@ -117,7 +115,7 @@ export const deletePost = async (req, res, next) => {
 
 export const getByUserId = async (req, res, next) => {
     const userId = req.params.id
-    console.log(userId)
+
     let userBlog;
     try {
         userBlog = await User.findById(userId).populate('blogs')    

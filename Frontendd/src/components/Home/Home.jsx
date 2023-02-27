@@ -17,7 +17,7 @@ function Home() {
 
   const fetchData = () => {
     setLoading(true);
-    const url = `http://localhost:8088/blogs/`;
+    const url = `http://localhost:8080/blogs/`;
     let authAxios = TokenApi(url);
     authAxios
       .get(url)
@@ -37,7 +37,11 @@ function Home() {
 
   
   const handleNavigate = (id) => {
-    navigate(`/user/${id}`)
+    if (isAuth) {
+      navigate(`/user/${id}`)
+    } else {
+      navigate("login");
+    }
   }
  
   const handleClick = (id) => {

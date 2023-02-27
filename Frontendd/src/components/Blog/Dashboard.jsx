@@ -116,7 +116,6 @@ function Dashboard() {
           </div>
           <img className={styles.img} src={blog.image} alt="" />
           <h1>{blog.title}</h1>
-          <p>{blog.description}</p>
         </div>
       ))}
     </div>

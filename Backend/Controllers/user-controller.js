@@ -110,7 +110,7 @@ export const editProfile = async (req, res, next) => {
 
 export const GetUserById = async (req, res, next) => {
     const userID = req.params.id
-    console.log(userID)
+
     let existingUser;
     try {
        existingUser = await User.findById(userID) 

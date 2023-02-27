@@ -7,8 +7,8 @@ import DateRangeIcon from '@mui/icons-material/DateRange';
 import moment from "moment"
 
 function Getblog() {
-    const [user, setUser] = useState([])
-  const [blogs, setBlogs] = useState([]);
+    const [user, setUser] = useState("")
+  const [blogs, setBlogs] = useState("");
   const blogID = useParams();
 
   const getData = () => {
@@ -19,7 +19,7 @@ function Getblog() {
       .then((res) => {
         setBlogs(res.data.blog);
         setUser(res.data.blog.user)
-        // console.log(res.data.blog.user);
+    
       })
       .catch((err) => {
         console.log(err);
@@ -30,7 +30,9 @@ function Getblog() {
   useEffect(() => {
     getData();
   }, []);
-  console.log(user);
+
+  console.log(blogs)
+
   return (
     <div>  
       <div className={styled.container}>

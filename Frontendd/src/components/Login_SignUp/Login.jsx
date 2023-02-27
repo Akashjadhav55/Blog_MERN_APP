@@ -26,7 +26,6 @@ function Login() {
             .then((res) => {
                 const decode = jwt_decode(res.data.token)
                 const cookies = new Cookies()
-                console.log(cookies)
                 cookies.set("AccessToken", res.data.token, decode,{
                     expires : new Date(decode.exp * 1000)
                 })

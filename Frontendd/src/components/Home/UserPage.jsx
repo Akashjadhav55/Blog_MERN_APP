@@ -13,7 +13,7 @@ function User() {
   const navigate = useNavigate();
   const userID = useParams();
   const hanldeUser = () => {
-    let url = `http://localhost:8088/user/${userID.id}`;
+    let url = `http://localhost:8080/user/${userID.id}`;
 
     const authAxios = TokenApi(url);
     setLoading(true);
@@ -65,24 +65,6 @@ function User() {
               }}
             >
               Name :<h4>{user.name}</h4>
-            </label>
-            <label
-              style={{
-                fontSize: "20px",
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              Email :<h4>{user.email}</h4>
-            </label>
-            <label
-              style={{
-                fontSize: "20px",
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              Number : <h4>{user.mobile}</h4>
             </label>
             <label
               style={{
