@@ -17,7 +17,7 @@ function Home() {
 
   const fetchData = () => {
     setLoading(true);
-    const url = `http://localhost:8080/blogs/`;
+    const url = `http://localhost:8088/blogs/`;
     let authAxios = TokenApi(url);
     authAxios
       .get(url)
@@ -56,7 +56,7 @@ function Home() {
         <div className={styles.main}>
           {blogs.map((blog) => (
             <div key={blog._id} className={styles.container}>
-              <div onClick={() => handleNavigate(user._id)} className={styles.user}>
+              <div onClick={() => handleNavigate(blog.user._id)} className={styles.user}>
                 <Avatar src={blog.user.avatar} alt={blog.user.name} />
                 <p className={styles.UserName}>{blog.user.name}</p>
               </div>

@@ -116,11 +116,11 @@ export const GetUserById = async (req, res, next) => {
        existingUser = await User.findById(userID) 
     } catch (error) {
         console.log(error)
-       return res.status.json({message : "can't find id"})
+       return res.status(400).json({message : "can't find id"})
     }
 
     if(!existingUser){
-        return res.status.json({message: "User Is Not Found"})
+        return res.status(500).json({message: "User Is Not Found"})
     }
     return res.status(200).json({existingUser})
 }

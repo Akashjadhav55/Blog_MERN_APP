@@ -11,7 +11,7 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
-const port = 8080
+const port = 8088
 
 app.get('/', (req,res)=>{
   return res.status(200).json({

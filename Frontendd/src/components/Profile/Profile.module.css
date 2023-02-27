@@ -18,6 +18,7 @@
     width: 150px;
     position: relative;
     left: 20px;
+    border-radius: 100px;
 }
 .editeButton{
   position: absolute;
