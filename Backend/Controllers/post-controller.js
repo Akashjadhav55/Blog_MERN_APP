@@ -3,7 +3,7 @@ import Post from "../Models/post.model.js"
 import user from "../Models/user.model";
 import User from "../Models/user.model.js"
 
-export const getAllPost = async (req, res, next) => {
+export default async function getAllPost(req, res, next){
     let blogs;
     try {
         blogs = await Post.find().populate("user")
@@ -17,7 +17,7 @@ export const getAllPost = async (req, res, next) => {
     return res.status(200).json({blogs})
 }
 
-export const addPost = async (req, res, next) => {
+export default async function addPost(req, res, next){
     const { title, description, image, user } = req.body
 
     let existingUser;
@@ -56,7 +56,7 @@ export const addPost = async (req, res, next) => {
     return res.status(200).json({blog})
 }
 
-export const updatePost = async (req, res, next) => {
+export default async function updatePost(req, res, next){
         const { title, description } = req.body
         const blogId = req.params.id;
         let blog;
@@ -76,7 +76,7 @@ export const updatePost = async (req, res, next) => {
         return res.status(200).json({blog})
 }
 
-export const getById = async (req ,res , next) =>{
+export default async function getById(req ,res , next){
     const id = req.params.id;
     let blog;
     try {
@@ -90,7 +90,7 @@ export const getById = async (req ,res , next) =>{
     return res.status(200).json({blog})
 }
 
-export const deletePost = async (req, res, next) => {
+export default async function deletePost(req, res, next){
     const id = req.params.id
     let blog;
 
@@ -113,7 +113,7 @@ export const deletePost = async (req, res, next) => {
 
 
 
-export const getByUserId = async (req, res, next) => {
+export default async function getByUserId(req, res, next){
     const userId = req.params.id
 
     let userBlog;

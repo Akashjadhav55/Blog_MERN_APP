@@ -1,4 +1,4 @@
-import User from "../Models/user.model"
+import User from "../Models/user.model.js"
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
 import * as dotenv from 'dotenv';
@@ -6,7 +6,7 @@ import user from "../Models/user.model";
 dotenv.config();
 
 
-export const getAllUser = async (req, res, next) => {
+export default async function getAllUser(req, res, next){
     let users;
     try {
         users = await User.find()        
@@ -20,7 +20,7 @@ export const getAllUser = async (req, res, next) => {
 }
 
 
-export const signup = async (req, res, next) => {
+export default async function Signup(req, res, next){
     const { name , email , password } = req.body
 
     let existingUser;
@@ -50,7 +50,7 @@ export const signup = async (req, res, next) => {
     return res.status(201).json({user})
 }
 
-export const login = async ( req, res, next) => {
+export default async function Login( req, res, next){
     const {email , password} = req.body
      const SECRET = process.env.JWT_SECRET;
     let existingUser
@@ -80,7 +80,7 @@ export const login = async ( req, res, next) => {
         })
 }
 
-export const editProfile = async (req, res, next) => {
+export default async function EditProfile(req, res, next) {
     const { _id, name, tagline, bio, mobile, avatar } = req.body
     const userID = req.params.id
  
@@ -108,7 +108,7 @@ export const editProfile = async (req, res, next) => {
 }
 
 
-export const GetUserById = async (req, res, next) => {
+export default async function GetUserById(req, res, next){
     const userID = req.params.id
 
     let existingUser;
