@@ -11,8 +11,8 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
-let username = process.env.USERNAME
-let password = process.env.PASSWORD
+
+let connectionString = process.env.DATABASE_URL
 let port = process.env.PORT || 8080;
 
 app.get('/', (req,res)=>{
@@ -28,7 +28,7 @@ app.use("/blog", blogrouter)
 
 mongoose.set('strictQuery', true);
 mongoose
-  .connect(`mongodb+srv://Akash:${password}@mernapp.dwvxq6l.mongodb.net/?retryWrites=true&w=majority`)
+  .connect(connectionString)
   .then(() => app.listen(port))
   .then(() => 
       console.log("server is running on http://localhost:"+ port)
