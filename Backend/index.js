@@ -7,13 +7,14 @@ import blogrouter from "./routes/post-route.js"
 import { auth } from "./middlewares/auth.js"
 import allblogrouter from "./routes/getAllPost-route.js"
 
+
+let connectionString = process.env.DATABASE_URL
+let port = process.env.PORT || 8080;
 const app = express()
 app.use(express.json())
 app.use(cors())
 
 
-let connectionString = process.env.DATABASE_URL
-let port = process.env.PORT || 8080;
 
 app.get('/', (req,res)=>{
   return res.status(200).json({
