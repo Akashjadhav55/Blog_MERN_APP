@@ -21,16 +21,25 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px 10px 30px 10px;
+    padding: 10px 10px 10px 10px;
     font-size: 18px;
 }
 .userName{
     padding-left: 10px ;
 }
+.dates{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.dates > span{
+    padding-left: 10px;
+}
 .paragraph{
     padding: 30px 50px 10px 50px;
-    font-size: 30px;
+    font-size: 25px;
     text-align: center;
+    text-indent: 100px;
 }
 
 @media screen and (min-width: 1600px) {

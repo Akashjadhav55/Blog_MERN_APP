@@ -6,7 +6,7 @@ import User from "../Models/user.model"
 export const getAllPost = async (req, res, next) => {
     let blogs;
     try {
-        blogs = await Post.find()
+        blogs = await Post.find().populate("user")
     } catch (error) {
         return console.log(error)
     }
@@ -82,7 +82,7 @@ export const getById = async (req ,res , next) =>{
     const id = req.params.id;
     let blog;
     try {
-        blog = await Post.findById(id)
+        blog = await Post.findById(id).populate("user")
     } catch (error) {
         return console.log(error)
     }

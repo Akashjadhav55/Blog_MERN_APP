@@ -12,6 +12,7 @@ import EditProfile from './components/Profile/EditProfile';
 import Dashboard from './components/Blog/Dashboard';
 import Edit from './components/Blog/Edit';
 import Getblog from './components/Home/Getblog';
+import User from './components/Home/UserPage';
 // import Navbar from './extra/Navbar';
 function App() {
   return (
@@ -27,6 +28,8 @@ function App() {
       <Route path='/dashboard' element={<Dashboard/>}></Route>
       <Route path='/edit/:id' element={<Edit/>}></Route>
       <Route path='/blog/:id' element={<Getblog/>}></Route>
+      <Route path="/user/:id" element={<User/>}></Route>
+
 
       <Route path='/login' element={<Login/>}></Route>
       <Route path='/signup' element={<Signup/>} ></Route>

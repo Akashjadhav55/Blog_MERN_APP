@@ -5,47 +5,75 @@ import styles from "./Home.module.css";
 import Avatar from "@mui/material/Avatar";
 
 import { useNavigate } from "react-router-dom";
+import Skelaton from "./Skelaton";
 
 function Home() {
+  const [loading, setLoading] = useState(false);
   const [blogs, setBlogs] = useState([]);
   const user = useSelector((store) => store.user.userData);
+  const isAuth = useSelector((store) => store.user.isAuth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-
   const fetchData = () => {
-    const url = `http://localhost:8080/blog/`;
+    setLoading(true);
+    const url = `http://localhost:8080/blogs/`;
     let authAxios = TokenApi(url);
     authAxios
       .get(url)
       .then((data) => {
+        // console.log(data.data)
         setBlogs(data.data.blogs);
       })
-      .catch((err) => console.log(err));
-    };
-    
-    useEffect(() => {
-      fetchData();
-    }, []);
-    console.log(blogs)
+      .catch((err) => console.log(err))
+      .finally(() => {
+        setLoading(false);
+      });
+  };
 
-  const handleClick = (id) => {
-    navigate(`/blog/${id}`)
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  
+  const handleNavigate = (id) => {
+    navigate(`/user/${id}`)
   }
+ 
+  const handleClick = (id) => {
+    if (isAuth) {
+      navigate(`/blog/${id}`);
+    } else {
+      navigate("login");
+    }
+  };
 
   return (
-    <div className={styles.main}>
-      {blogs.map((blog) => (
-        <div key={blog._id} onClick={() => handleClick(blog._id)} className={styles.container}>
-          <div className={styles.user}>
-              <Avatar src={user.avatar} alt={user.name} />
-              <p className={styles.UserName}>{user.name}</p>
-          </div>
-          <img className={styles.img} src={blog.image} alt="" />
-          <h1>{blog.title}</h1>
-          <p>{blog.description}</p>
+    <div>
+      {loading ? (
+        <Skelaton />
+      ) : (
+        <div className={styles.main}>
+          {blogs.map((blog) => (
+            <div key={blog._id} className={styles.container}>
+              <div onClick={() => handleNavigate(user._id)} className={styles.user}>
+                <Avatar src={blog.user.avatar} alt={blog.user.name} />
+                <p className={styles.UserName}>{blog.user.name}</p>
+              </div>
+              <img className={styles.img} src={blog.image} alt="" />
+              <div className={styles.info}>
+                <h1>{blog.title}</h1>
+                <button
+                  onClick={() => handleClick(blog._id)}
+                  className={styles.button}
+                >
+                  Read More
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
+      )}
     </div>
   );
 }

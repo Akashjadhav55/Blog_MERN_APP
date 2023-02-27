@@ -2,6 +2,7 @@ import User from "../Models/user.model"
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
 import * as dotenv from 'dotenv';
+import user from "../Models/user.model";
 dotenv.config();
 
 
@@ -104,4 +105,22 @@ export const editProfile = async (req, res, next) => {
     }
     return res.status(200).json({existingUser})
 
+}
+
+
+export const GetUserById = async (req, res, next) => {
+    const userID = req.params.id
+    console.log(userID)
+    let existingUser;
+    try {
+       existingUser = await User.findById(userID) 
+    } catch (error) {
+        console.log(error)
+       return res.status.json({message : "can't find id"})
+    }
+
+    if(!existingUser){
+        return res.status.json({message: "User Is Not Found"})
+    }
+    return res.status(200).json({existingUser})
 }

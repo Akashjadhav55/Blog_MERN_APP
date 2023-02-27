@@ -5,6 +5,7 @@ import mongoose from "mongoose"
 import userRouter from "./routes/user-routes.js"
 import blogrouter from "./routes/post-route.js"
 import { auth } from "./middlewares/auth.js"
+import allblogrouter from "./routes/getAllPost-route.js"
 
 const app = express()
 app.use(express.json())
@@ -18,6 +19,7 @@ app.get('/', (req,res)=>{
   });
 })
 
+app.use("/blogs", allblogrouter)
 app.use("/user",userRouter) 
 app.use(auth)
 app.use("/blog", blogrouter)
