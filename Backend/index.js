@@ -6,6 +6,8 @@ import userRouter from "./Controllers/user-controller.js"
 import blogrouter from "./Controllers/post-controller.js"
 import { auth } from "./middlewares/auth.js"
 import allblogrouter from "./Controllers/allpost-controller.js"
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 // const express = require("express")
 // const cors = require("cors")
