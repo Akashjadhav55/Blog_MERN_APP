@@ -17,7 +17,8 @@ function Home() {
 
   const fetchData = () => {
     setLoading(true);
-    const url = `http://localhost:8080/blogs/`;
+    // const url = `http://localhost:8080/blogs/`;
+    let url = `https://mernblog-t8ft.onrender.com/blogs/`
     let authAxios = TokenApi(url);
     authAxios
       .get(url)

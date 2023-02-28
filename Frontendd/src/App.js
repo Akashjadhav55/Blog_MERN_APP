@@ -1,5 +1,5 @@
 // import logo from './logo.svg';/
-import './App.css';
+import styles from './App.module.css';
 import { Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Create from './components/Blog/Create';
@@ -16,7 +16,7 @@ import User from './components/Home/UserPage';
 // import Navbar from './extra/Navbar';
 function App() {
   return (
-    <div className="App">
+    <div className={styles.app}>
       {/* <Navbar/> */}
       <Navbar/>
       {/* <Api/> */}

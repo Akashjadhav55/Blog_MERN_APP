@@ -13,7 +13,8 @@ function User() {
   const navigate = useNavigate();
   const userID = useParams();
   const hanldeUser = () => {
-    let url = `http://localhost:8080/user/${userID.id}`;
+    // let url = `http://localhost:8080/user/${userID.id}`;
+    let url = `https://mernblog-t8ft.onrender.com/user/${userID.id}`
 
     const authAxios = TokenApi(url);
     setLoading(true);

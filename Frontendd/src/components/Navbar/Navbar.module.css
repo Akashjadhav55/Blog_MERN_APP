@@ -3,7 +3,9 @@
     align-items: center;
     justify-content:space-between;
     padding: 10px 20px;
-    border-bottom: 1px solid #cecece;
+    border-bottom: 1px solid #182020;
+    /* background-color: #222736; */
+     background-color: #36394c;
 }
 .logo{
     height: 50px;

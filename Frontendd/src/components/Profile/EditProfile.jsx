@@ -51,7 +51,8 @@ function EditProfile() {
         avatar: avatar,
       };
       // userRouter.patch("/edit/:id", editProfile)
-      let url = `http://localhost:8080/user/edit/${user._id}`;
+      // let url = `http://localhost:8080/user/edit/${user._id}`;
+      let url = `https://mernblog-t8ft.onrender.com/user/edit/${user._id}`
       const authAxios = TokenApi(url);
 
       authAxios
@@ -70,7 +71,7 @@ function EditProfile() {
     <div>
       <div style={{ padding: "20px", marginTop: "0vh" }}>
         <TextField
-          style={{ padding: "10px" }}
+          style={{ padding: "20px 5px" }}
           placeholder="Name"
           fullWidth
           value={name}
@@ -106,13 +107,13 @@ function EditProfile() {
           onChange={(e) => setBio(e.target.value)}
         />
         <TextField
-          style={{ padding: "10px" }}
+          style={{ padding: "20px 5px" }}
           placeholder="Number"
           fullWidth
           value={mobile}
           onChange={(e) => setNumber(e.target.value)}
         />
-        <Button variant="contained" onClick={handleSubmit}>
+        <Button style={{margin:"20px 5px", padding:"13px 26px"}} variant="contained" onClick={handleSubmit}>
           Save
         </Button>
       </div>

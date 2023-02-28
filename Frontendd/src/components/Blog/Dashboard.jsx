@@ -24,7 +24,8 @@ function Dashboard() {
 
 
   const fetchData = () => {
-    const url = `http://localhost:8080/blog/user/${user._id}`;
+    // const url = `http://localhost:8080/blog/user/${user._id}`;
+    let url = `https://mernblog-t8ft.onrender.com/blog/user/${user._id}`
     let authAxios = TokenApi(url);
     authAxios
       .get(url)
@@ -39,7 +40,8 @@ function Dashboard() {
   }, []);
 
   const handleDelete = (id) => {
-    const url = `http://localhost:8080/blog/${id}`;
+    // const url = `http://localhost:8080/blog/${id}`;
+    let url = `https://mernblog-t8ft.onrender.com/blog/${id}`
     console.log(id)
     swal({
       title: "Are you sure?",
@@ -74,7 +76,7 @@ function Dashboard() {
         <div key={blog._id} className={styles.container}>
           <div className={styles.user}>
             <div className={styles.userOne}>
-              <Avatar src={user.avatar} alt={user.name} />
+              <Avatar className={styles.avatar} src={user.avatar} alt={user.name} />
               <p className={styles.UserName}>{user.name}</p>
             </div>
             <div className={styles.userTwo}>
@@ -84,9 +86,9 @@ function Dashboard() {
                 <Box sx={{ flexGrow: 0 }}>
                   <Tooltip title="Open settings">
                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                      <div>.</div>
-                      <div>.</div>
-                      <div>.</div>
+                      <div style={{ color:"#fff" }} >.</div>
+                      <div style={{color:"#fff"}}>.</div>
+                      <div style={{color :"#fff"}}>.</div>
                     </IconButton>
                   </Tooltip>
                   <Menu

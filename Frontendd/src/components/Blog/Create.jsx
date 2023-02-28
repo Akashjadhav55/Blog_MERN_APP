@@ -38,7 +38,8 @@ function Create() {
       user: user._id,
     };
 
-    const url = "http://localhost:8080/blog/add";
+    // const url = "http://localhost:8080/blog/add";
+    const url = "https://mernblog-t8ft.onrender.com/blog/add"
     let authAxios = TokenApi(url);
     authAxios
       .post(url, payload)
@@ -70,7 +71,7 @@ function Create() {
     <div>
       <form
         style={{
-          border: "1px solid",
+          color : "#fff",
           margin: "20px",
           padding: "20px 50px 20px 50px ",
         }}
@@ -80,7 +81,7 @@ function Create() {
         {imageURL.map(imgsrc => <img style={{width:"100%"}} src={imgsrc}/>)}
       </div> */}
         <TextField
-          style={{ padding: "20px 5px" }}
+          style={{ padding: "20px 5px", color:"#fff"}}
           fullWidth
           size="small"
           placeholder="Add a ImageUrl"
