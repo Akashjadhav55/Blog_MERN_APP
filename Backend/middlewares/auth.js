@@ -1,7 +1,8 @@
+// const jwt = require("jsonwebtoken")
+// require("dotenv").config()
 import jwt from "jsonwebtoken";
 import * as dotenv from 'dotenv';
 dotenv.config();
-
 
 
 export const auth = async (req, res, next) => {
@@ -25,8 +26,8 @@ export const auth = async (req, res, next) => {
       } 
     }else {
       res.status(400).send("Unauthorised User");
-    }
-      
+    }      
 }
   
+// module.exports = auth
   

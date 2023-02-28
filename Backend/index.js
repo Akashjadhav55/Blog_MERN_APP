@@ -2,10 +2,21 @@ import express from "express"
 import cors from "cors"
 // import connection from "./Config/db.js"
 import mongoose from "mongoose"
-import userRouter from "./routes/user-routes.js"
-import blogrouter from "./routes/post-route.js"
+import userRouter from "./Controllers/user-controller.js"
+import blogrouter from "./Controllers/post-controller.js"
 import { auth } from "./middlewares/auth.js"
-import allblogrouter from "./routes/getAllPost-route.js"
+import allblogrouter from "./Controllers/allpost-controller.js"
+
+// const express = require("express")
+// const cors = require("cors")
+// const mongoose = require("mongoose")
+
+// const userRouter = require("./routes/user-routes.js")
+// const blogrouter = require("./routes/post-route.js")
+// const auth = require("./middlewares/auth.js")
+// const allblogrouter = require("./routes/getAllPost-route.js")
+// require("dotenv").config()
+
 
 
 let connectionString = process.env.DATABASE_URL

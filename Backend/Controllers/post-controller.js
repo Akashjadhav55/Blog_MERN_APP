@@ -1,9 +1,18 @@
-import mongoose from "mongoose";
-import Post from "../Models/post.model.js"
-import user from "../Models/user.model";
-import User from "../Models/user.model.js"
+// const Post = require("../Models/post.model.js")
+// const User = require("../Models/user.model.js")
 
-export default async function getAllPost(req, res, next){
+
+import mongoose from "mongoose";
+// import Post from "../Models/post.model.js"
+import Post from "../Models/post.model.js";
+import User from "../Models/user.model.js"
+import express from "express"
+
+const blogrouter = express.Router()
+
+
+
+ async function getAllPost(req, res, next){
     let blogs;
     try {
         blogs = await Post.find().populate("user")
@@ -17,7 +26,7 @@ export default async function getAllPost(req, res, next){
     return res.status(200).json({blogs})
 }
 
-export default async function addPost(req, res, next){
+ async function addPost(req, res, next){
     const { title, description, image, user } = req.body
 
     let existingUser;
@@ -56,7 +65,7 @@ export default async function addPost(req, res, next){
     return res.status(200).json({blog})
 }
 
-export default async function updatePost(req, res, next){
+ async function updatePost(req, res, next){
         const { title, description } = req.body
         const blogId = req.params.id;
         let blog;
@@ -76,7 +85,7 @@ export default async function updatePost(req, res, next){
         return res.status(200).json({blog})
 }
 
-export default async function getById(req ,res , next){
+ async function getById(req ,res , next){
     const id = req.params.id;
     let blog;
     try {
@@ -90,7 +99,7 @@ export default async function getById(req ,res , next){
     return res.status(200).json({blog})
 }
 
-export default async function deletePost(req, res, next){
+async function deletePost(req, res, next){
     const id = req.params.id
     let blog;
 
@@ -113,7 +122,7 @@ export default async function deletePost(req, res, next){
 
 
 
-export default async function getByUserId(req, res, next){
+ async function getByUserId(req, res, next){
     const userId = req.params.id
 
     let userBlog;
@@ -128,3 +137,26 @@ export default async function getByUserId(req, res, next){
     return res.status(200).json({userBlog})
 
 }
+
+blogrouter.get("/", getAllPost)
+blogrouter.post("/add", addPost)
+blogrouter.patch("/update/:id", updatePost)
+blogrouter.get("/:id", getById)
+blogrouter.delete("/:id" , deletePost)
+blogrouter.get("/user/:id", getByUserId)
+
+
+
+export default blogrouter;
+
+
+
+
+// module.exports = {
+//     getAllPost,
+//     addPost,
+//     updatePost,
+//     deletePost,
+//     getById,
+//     getByUserId
+// }

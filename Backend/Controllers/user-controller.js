@@ -1,12 +1,19 @@
+// const User = require("../Models/user.model.js")
+// const bcrypt = require("bcryptjs")
+// const jwt = require("jsonwebtoken")
+// require("dotenv").config()
+
 import User from "../Models/user.model.js"
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
 import * as dotenv from 'dotenv';
-import user from "../Models/user.model";
 dotenv.config();
 
 
-export default async function getAllUser(req, res, next){
+import express from "express"
+const userRouter = express.Router()
+
+ async function getAllUser(req, res, next){
     let users;
     try {
         users = await User.find()        
@@ -20,7 +27,7 @@ export default async function getAllUser(req, res, next){
 }
 
 
-export default async function Signup(req, res, next){
+ async function Signup(req, res, next){
     const { name , email , password } = req.body
 
     let existingUser;
@@ -50,7 +57,7 @@ export default async function Signup(req, res, next){
     return res.status(201).json({user})
 }
 
-export default async function Login( req, res, next){
+ async function Login( req, res, next){
     const {email , password} = req.body
      const SECRET = process.env.JWT_SECRET;
     let existingUser
@@ -80,7 +87,7 @@ export default async function Login( req, res, next){
         })
 }
 
-export default async function EditProfile(req, res, next) {
+ async function EditProfile(req, res, next) {
     const { _id, name, tagline, bio, mobile, avatar } = req.body
     const userID = req.params.id
  
@@ -107,8 +114,7 @@ export default async function EditProfile(req, res, next) {
 
 }
 
-
-export default async function GetUserById(req, res, next){
+ async function FindUserByID(req, res, next){
     const userID = req.params.id
 
     let existingUser;
@@ -124,3 +130,24 @@ export default async function GetUserById(req, res, next){
     }
     return res.status(200).json({existingUser})
 }
+
+
+userRouter.get("/", getAllUser)
+userRouter.post("/signup", Signup)
+userRouter.post("/login", Login)
+userRouter.patch("/edit/:id", EditProfile)
+userRouter.get('/:id', FindUserByID)
+
+
+
+
+export default userRouter
+
+
+// module.exports = {
+//     getAllUser,
+//     Signup,
+//     Login,
+//     EditProfile,
+//     FindUserByID
+// }

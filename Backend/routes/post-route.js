@@ -1,3 +1,6 @@
+// const express = require("express")
+// const {getAllPost, addPost, updatePost, getById, deletePost, getByUserId   } = require("../Controllers/post-controller.js") 
+
 import express from "express"
 import getAllPost from "../Controllers/post-controller.js"
 import addPost from "../Controllers/post-controller.js"
@@ -16,3 +19,4 @@ blogrouter.delete("/:id" , deletePost)
 blogrouter.get("/user/:id", getByUserId)
 
 export default blogrouter;
+// module.exports = blogrouter
