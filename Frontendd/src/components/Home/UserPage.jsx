@@ -44,20 +44,11 @@ function User() {
       ) : (
         <div className={styles.main}>
           <div className={styles.profile}>
-            <div
-              style={{
-                margin: "auto",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "end",
-              }}
-            >
               <img
                 className={styles.avatar}
                 alt={user.name}
                 src={user.avatar}
               />
-            </div>
             <label
               style={{
                 fontSize: "20px",
@@ -65,7 +56,7 @@ function User() {
                 alignItems: "center",
               }}
             >
-              Name :<h4>{user.name}</h4>
+              Name <span style={{padding:"0 8px"}} >:-</span><span>{user.name}</span>
             </label>
             <label
               style={{
@@ -74,7 +65,7 @@ function User() {
                 alignItems: "center",
               }}
             >
-              Tag : <h4>{user.tagline}</h4>
+              Tag <span style={{padding:"0 8px"}} >:-</span> <span>{user.tagline}</span>
             </label>
             <label
               style={{
@@ -83,7 +74,7 @@ function User() {
                 alignItems: "center",
               }}
             >
-              Bio : <h4>{user.bio}</h4>
+              Bio<span style={{padding:"0 8px"}} >:-</span> <span>{user.bio}</span>
             </label>
           </div>
         </div>

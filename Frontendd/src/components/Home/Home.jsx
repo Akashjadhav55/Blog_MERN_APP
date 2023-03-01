@@ -65,9 +65,9 @@ function Home() {
                 <Avatar src={blog.user.avatar} alt={blog.user.name} />
                 <p className={styles.UserName}>{blog.user.name}</p>
               </div>
-              <img className={styles.img} src={blog.image} alt="" />
               <div className={styles.info}>
-                <h1>{blog.title}</h1>
+              <img className={styles.img} src={blog.image} alt="" />
+                <p>{blog.title}</p>
                 <button
                   onClick={() => handleClick(blog._id)}
                   className={styles.button}

@@ -26,20 +26,20 @@ function Profile() {
           </Fab>
         </div>
         <label style={{fontSize:"20px" , display: "flex", alignItems: "center" }}>
-          Name :<h4>{user.name}</h4>
+          Name <span style={{padding:"0 8px"}}>:-</span> <span>{user.name}</span>
         </label>
         <label style={{fontSize:"20px" ,display: "flex", alignItems: "center" }}>
 
-          Email :<h4>{user.email}</h4>
+          Email <span style={{padding:"0 8px"}}>:-</span> <hspan>{user.email}</hspan>
         </label>
         <label style={{fontSize:"20px" ,display: "flex", alignItems: "center" }}>
-          Number : <h4>{user.mobile}</h4>
+          Number <span style={{padding:"0 8px"}}>:-</span>  <hspan>{user.mobile}</hspan>
         </label>
         <label style={{fontSize:"20px" ,display: "flex", alignItems: "center" }}>
-          Tag : <h4>{user.tagline}</h4>
+          Tag <span style={{padding:"0 8px"}}>:-</span>  <hspan>{user.tagline}</hspan>
         </label>
         <label style={{fontSize:"20px" ,display: "flex", alignItems: "center" }}>
-          Bio : <h4>{user.bio}</h4>
+          Bio <span style={{padding:"0 8px"}}>:-</span> <hspan>{user.bio}</hspan>
         </label>
       </div>
       <div>
